@@ -1,0 +1,6 @@
+body {
+  background-color: #f6f6f7;
+}
+#category ul li {
+  cursor: pointer;
+}
