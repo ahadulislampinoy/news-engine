@@ -46,17 +46,9 @@
         <hr>
         <!-- category start -->
         <section id="category">
-            <ul
+            <ul id="category-list"
                 class="list-unstyled d-flex justify-content-center justify-content-md-around fw-semibold flex-wrap pt-4">
-                <li>Home</li>
-                <li>Breaking news </li>
-                <li>Regular news</li>
-                <li>International news</li>
-                <li>Sports</li>
-                <li>Entertainment</li>
-                <li>Culture</li>
-                <li>Arts</li>
-                <li>All news</li>
+                <!-- list added from js dynamically -->
             </ul>
             <div class="bg-white py-3 px-4 rounded my-4">
                 <h5><span>4</span> items found for category Entertainment</h5>
@@ -77,70 +69,35 @@
         <!-- category end -->
         <!-- news start -->
         <section id="news" class="pt-5">
-            <div class="row row-cols-1 g-4">
+            <div class="row row-cols-1 g-4" id="col-container">
                 <div class="col">
-                    <div class="card">
-                        <div class="row g-0 p-3">
-                            <div class="col-md-4">
-                                <img src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVuc3xlbnwwfHwwfHw%3D&w=1000&q=80"
-                                    class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text pb-2 card-text-custom">Wednesday, August 24, 2022 | Tag Cloud
-                                        Tags: Biden, EU,
-                                        Euro, Europe, Joe Biden, Military, News, Russia, Security, UK, Ukraine, United
-                                        States, Worthy News (Worthy News) – U.S. President Joe Biden has announced
-                                        nearly $3 billion in new U.S. military aid for Kyiv as Ukraine marked its
-                                        independence day six months after Russia invaded the country.'The United States
-                                        of America is committed to supporting the people of Ukraine as they continue the
-                                        fight to defend their sovereignty. As part of that commitment, I am proud to
-                                        announce our biggest tranche of security assistance to date: approximately $2.
-                                    </p>
-                                    <div>
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80"
-                                                    alt="" class="rounded-circle" style="width: 15%;">
-                                                <p class="mb-0">James</p>
-                                            </div>
-                                            <div class="col">
-                                                <i class="fa-regular fa-eye"></i><span> 1.5M</span>
-                                            </div>
-                                            <div class="col text-center">
-                                                <a href="#" class="text-success fw-bold" data-bs-toggle="modal"
-                                                    data-bs-target="#detailsModal"><i
-                                                        class="fa-solid fa-arrow-right"></i></a>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
         </section>
         <!-- news end -->
-        <!-- Modal -->
-        <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="detailsModalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- additional things from main -->
+        <!-- no News found message here -->
+        <section id="no-news-message" class="text-center my-3 d-none">
+            <h3 class="text-danger">No News Available 📰</h3>
+            <!-- Modal -->
+            <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="detailsModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
     <footer class="container text-center pt-5">
         <h5>Ahadul Islam Pinoy - All Rights Reserved

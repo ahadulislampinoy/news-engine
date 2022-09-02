@@ -10,9 +10,9 @@ body {
     padding-bottom: 1.5rem;
   }
 }
-.card-text-custom {
+/* .card-text-custom {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden; /* limit to 2 lines */
-}
+} */
