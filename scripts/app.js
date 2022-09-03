@@ -25,17 +25,17 @@ const displayCategories = (allCategories) => {
 };
 
 // get specific category data
-const categoryId = (id, name) => {
+const categoryId = (id, categoryName) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => displayNews(data.data, name))
+    .then((data) => displayNews(data.data, categoryName))
     .catch((err) => alert(err.name));
   // loading spinner start
   loadingSpinner(true);
 };
 
 //  showing the specific category data into a card
-const displayNews = (allNews, name) => {
+const displayNews = (allNews, categoryName) => {
   // sorting news by views number
   allNews.sort((a, b) => {
     return b.total_view - a.total_view;
@@ -45,7 +45,7 @@ const displayNews = (allNews, name) => {
   foundItemsNumber.innerText = allNews.length;
   // adding name of category
   const foundCategoryName = document.getElementById("found-category-name");
-  foundCategoryName.innerText = name;
+  foundCategoryName.innerText = categoryName;
   // no News found message here
   const noNewsMessage = document.getElementById("no-news-message");
   if (allNews.length === 0) {
