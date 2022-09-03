@@ -1,8 +1,15 @@
 // get common category data
-const getNews = () => {
-  fetch(`https://openapi.programming-hero.com/api/news/categories`)
-    .then((res) => res.json())
-    .then((data) => displayCategories(data.data.news_category));
+const getNews = async () => {
+  try {
+    const res = await fetch(
+      "https://openapi.programming-hero.com/api/news/categories"
+    );
+    const data = await res.json();
+    displayCategories(data.data.news_category);
+  } catch (err) {
+    // if api link is not correct then it will show an aleart
+    alert(err.name);
+  }
 };
 
 // make new li and enter categories names into the li
@@ -11,29 +18,34 @@ const displayCategories = (allCategories) => {
   allCategories.forEach((category) => {
     const li = document.createElement("li");
     li.innerHTML = `
-      <li onclick="categoryId('${category.category_id}')">${category.category_name}</li>
+      <li onclick="categoryId('${category.category_id}','${category.category_name}')">${category.category_name}</li>
       `;
     categoryList.appendChild(li);
   });
 };
 
 // get specific category data
-const categoryId = (id) => {
+const categoryId = (id, name) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
-    .then((data) => displayNews(data.data));
+    .then((data) => displayNews(data.data, name))
+    .catch((err) => alert(err.name));
   // loading spinner start
   loadingSpinner(true);
 };
 
 //  showing the specific category data into a card
-const displayNews = (allNews) => {
+const displayNews = (allNews, name) => {
   // sorting news by views number
   allNews.sort((a, b) => {
     return b.total_view - a.total_view;
   });
+  // adding number of founded news
   const foundItemsNumber = document.getElementById("found-items-number");
   foundItemsNumber.innerText = allNews.length;
+  // adding name of category
+  const foundCategoryName = document.getElementById("found-category-name");
+  foundCategoryName.innerText = name;
   // no News found message here
   const noNewsMessage = document.getElementById("no-news-message");
   if (allNews.length === 0) {
@@ -102,7 +114,8 @@ const displayNews = (allNews) => {
 const loadModalContent = (newsId) => {
   fetch(`https://openapi.programming-hero.com/api/news/${newsId}`)
     .then((res) => res.json())
-    .then((data) => displayModalContent(data.data[0]));
+    .then((data) => displayModalContent(data.data[0]))
+    .catch((err) => alert(err.name));
 };
 
 // showing modal news data
@@ -123,6 +136,4 @@ const loadingSpinner = (isLoading) => {
     loadingSpinner.classList.add("d-none");
   }
 };
-// showing by-default all news
-categoryId("08");
 getNews();
