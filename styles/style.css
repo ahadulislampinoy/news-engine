@@ -5,6 +5,17 @@ body {
   cursor: pointer;
   padding: 0 10px;
 }
+.blog-custom-btn {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgb(45 35 66 / 40%) 0 2px 2px, rgb(45 35 66 / 30%) 0 5px 10px 0px,
+    #d6d6e7 0px -2px 0 inset;
+  color: #36395a;
+  display: inline-flex;
+  height: 48px;
+  font-size: 18px;
+}
 @media screen and (max-width: 576px) {
   .sort-category {
     padding-bottom: 1.5rem;
