@@ -1,17 +1,17 @@
-// get all category data
+// Get all category data
 const getNews = () => {
   fetch("https://openapi.programming-hero.com/api/news/categories")
     .then((res) => res.json())
     .then((data) => displayCategories(data.data.news_category))
-    // if api link is not correct then it will show an aleart
+    // If api link is not correct then it will show an aleart
     .catch((error) => alert(error.name));
 };
 
-// displaying all category names into list
+// Displaying all category names into list
 const displayCategories = (allCategories) => {
   const categoryList = document.getElementById("category-list");
   allCategories.forEach((category) => {
-    // make new li and enter categories names into the li
+    // Make new li and enter categories names into the li
     const li = document.createElement("li");
     li.innerHTML = `
       <li onclick="categoryId('${category.category_id}','${category.category_name}')">${category.category_name}</li>
@@ -20,36 +20,36 @@ const displayCategories = (allCategories) => {
   });
 };
 
-// get specific category data
+// Get specific category data
 const categoryId = (id, categoryName) => {
   fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => displayNews(data.data, categoryName))
     .catch((err) => alert(err.name));
-  // loading spinner start
+  // Loading spinner start
   loadingSpinner(true);
 };
 
-// displaying the specific category all data into a card
+// Displaying the specific category all data into a card
 const displayNews = (allNews, categoryName) => {
-  // sorting news by views number
+  // Sorting news by views number
   allNews.sort((a, b) => {
     return b.total_view - a.total_view;
   });
-  // adding number of founded news
+  // Adding number of founded news
   const foundItemsNumber = document.getElementById("found-items-number");
   foundItemsNumber.innerText = allNews.length;
-  // adding name of category
+  // Adding name of category
   const foundCategoryName = document.getElementById("found-category-name");
   foundCategoryName.innerText = categoryName;
-  // no news found message here
+  // No news found message here
   const noNewsMessage = document.getElementById("no-news-message");
   if (allNews.length === 0) {
     noNewsMessage.classList.remove("d-none");
   } else {
     noNewsMessage.classList.add("d-none");
   }
-  // adding specific datas into card
+  // Adding specific datas into card
   const colContainer = document.getElementById("col-container");
   colContainer.innerHTML = "";
   allNews.forEach((news) => {
@@ -103,11 +103,11 @@ const displayNews = (allNews, categoryName) => {
     `;
     colContainer.appendChild(colDiv);
   });
-  // loading spinner end
+  // Loading spinner end
   loadingSpinner(false);
 };
 
-// get modal news data
+// Get modal news data
 const getModalContent = (newsId) => {
   fetch(`https://openapi.programming-hero.com/api/news/${newsId}`)
     .then((res) => res.json())
@@ -115,7 +115,7 @@ const getModalContent = (newsId) => {
     .catch((err) => alert(err.name));
 };
 
-// showing modal news data
+// Showing modal news data
 const displayModalContent = (news) => {
   const modalBody = document.getElementById("modal-body");
   modalBody.innerHTML = `
@@ -124,7 +124,7 @@ const displayModalContent = (news) => {
   <p>${news.details}</p>`;
 };
 
-// loading spinner functionality
+// Loading spinner functionality
 const loadingSpinner = (isLoading) => {
   const loadingSpinner = document.getElementById("loading-spinner");
   if (isLoading) {
