@@ -11,7 +11,7 @@ const displayCategories = (allCategories) => {
   allCategories.forEach((category) => {
     const li = document.createElement("li");
     li.innerHTML = `
-      <li onclick="categoryId(${category.category_id})">${category.category_name}</li>
+      <li onclick="categoryId('${category.category_id}')">${category.category_name}</li>
       `;
     categoryList.appendChild(li);
   });
@@ -19,7 +19,7 @@ const displayCategories = (allCategories) => {
 
 // get specific category data
 const categoryId = (id) => {
-  fetch(`https://openapi.programming-hero.com/api/news/category/0${id}`)
+  fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then((res) => res.json())
     .then((data) => displayNews(data.data));
   // loading spinner start
@@ -28,10 +28,12 @@ const categoryId = (id) => {
 
 //  showing the specific category data into a card
 const displayNews = (allNews) => {
+  // sorting news by views number
+  allNews.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   const foundItemsNumber = document.getElementById("found-items-number");
   foundItemsNumber.innerText = allNews.length;
-  // console.log();
-
   // no News found message here
   const noNewsMessage = document.getElementById("no-news-message");
   if (allNews.length === 0) {
@@ -121,5 +123,6 @@ const loadingSpinner = (isLoading) => {
     loadingSpinner.classList.add("d-none");
   }
 };
-// categoryId("1");
+// showing by-default all news
+categoryId("08");
 getNews();
