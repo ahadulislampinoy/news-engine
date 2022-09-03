@@ -1,16 +1,17 @@
-// get common category data
+// get all category data
 const getNews = () => {
-  fetch(`https://openapi.programming-hero.com/api/news/categories`)
+  fetch("https://openapi.programming-hero.com/api/news/categories")
     .then((res) => res.json())
     .then((data) => displayCategories(data.data.news_category))
     // if api link is not correct then it will show an aleart
     .catch((error) => alert(error.name));
 };
 
-// make new li and enter categories names into the li
+// displaying all category names into list
 const displayCategories = (allCategories) => {
   const categoryList = document.getElementById("category-list");
   allCategories.forEach((category) => {
+    // make new li and enter categories names into the li
     const li = document.createElement("li");
     li.innerHTML = `
       <li onclick="categoryId('${category.category_id}','${category.category_name}')">${category.category_name}</li>
@@ -29,7 +30,7 @@ const categoryId = (id, categoryName) => {
   loadingSpinner(true);
 };
 
-//  showing the specific category data into a card
+// displaying the specific category all data into a card
 const displayNews = (allNews, categoryName) => {
   // sorting news by views number
   allNews.sort((a, b) => {
@@ -41,13 +42,14 @@ const displayNews = (allNews, categoryName) => {
   // adding name of category
   const foundCategoryName = document.getElementById("found-category-name");
   foundCategoryName.innerText = categoryName;
-  // no News found message here
+  // no news found message here
   const noNewsMessage = document.getElementById("no-news-message");
   if (allNews.length === 0) {
     noNewsMessage.classList.remove("d-none");
   } else {
     noNewsMessage.classList.add("d-none");
   }
+  // adding specific datas into card
   const colContainer = document.getElementById("col-container");
   colContainer.innerHTML = "";
   allNews.forEach((news) => {
@@ -87,7 +89,7 @@ const displayNews = (allNews, categoryName) => {
                   }</span>
                 </div>
                 <div class="col text-center">
-                  <a href="#" onclick="loadModalContent('${
+                  <a href="#" onclick="getModalContent('${
                     news._id
                   }')" class="text-success fw-bold" data-bs-toggle="modal" data-bs-target="#detailsModal"><i
                   class="fa-solid fa-arrow-right"></i></a>
@@ -105,8 +107,8 @@ const displayNews = (allNews, categoryName) => {
   loadingSpinner(false);
 };
 
-// loading modal news data
-const loadModalContent = (newsId) => {
+// get modal news data
+const getModalContent = (newsId) => {
   fetch(`https://openapi.programming-hero.com/api/news/${newsId}`)
     .then((res) => res.json())
     .then((data) => displayModalContent(data.data[0]))
