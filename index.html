@@ -79,10 +79,17 @@
         </section>
         <!-- news end -->
 
-        <!-- additional things from main content -->
+        <!-- additional things for main content -->
         <!-- No News found message here -->
         <div id="no-news-message" class="text-center my-3 d-none">
             <h3 class="text-danger">No News Available 📰</h3>
+        </div>
+        <!-- Spinner -->
+        <div id="loading-spinner" class="d-flex justify-content-center align-items-center d-none"
+            style="height: 200px;">
+            <div class="spinner-grow text-success text-center" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
@@ -98,13 +105,6 @@
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Spinner -->
-        <div id="loading-spinner" class="d-flex justify-content-center align-items-center d-none"
-            style="height: 200px;">
-            <div class="spinner-grow text-success text-center" role="status">
-                <span class="visually-hidden">Loading...</span>
             </div>
         </div>
     </main>
