@@ -1,15 +1,10 @@
 // get common category data
-const getNews = async () => {
-  try {
-    const res = await fetch(
-      "https://openapi.programming-hero.com/api/news/categories"
-    );
-    const data = await res.json();
-    displayCategories(data.data.news_category);
-  } catch (err) {
+const getNews = () => {
+  fetch(`https://openapi.programming-hero.com/api/news/categories`)
+    .then((res) => res.json())
+    .then((data) => displayCategories(data.data.news_category))
     // if api link is not correct then it will show an aleart
-    alert(err.name);
-  }
+    .catch((error) => alert(error.name));
 };
 
 // make new li and enter categories names into the li
