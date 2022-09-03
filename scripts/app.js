@@ -77,7 +77,7 @@ const displayNews = (allNews, categoryName) => {
                     src="${news.author.img}"
                     alt=""
                     class="rounded-circle"
-                    style="width: 15%"
+                    style="width: 3vw"
                   />
                   <p class="mb-0 d-inline-block">${
                     news.author.name ? news.author.name : "No name found"
